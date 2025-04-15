@@ -16,6 +16,7 @@ const buttonAuth = [
 
 const Navbar = () => {
   return (
+    <div className='py-5 h-fit flex items-center z-50 fixed bg-[#000000a0] w-full shadow-lg'>
     <motion.div
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -25,12 +26,12 @@ const Navbar = () => {
         damping:10,
         duration: 0.6,
       }}
-      className="z-50 flex fixed w-screen center justify-between py-5 px-20 items-center "
+      className=" flex  w-screen center justify-between  px-20 items-center "
     >
       <div>
         <p className="text-white text-2xl font-bold italic">VistaNusa.</p>
       </div>
-      <div className="flex gap-5">
+      <div className="flex gap-5 ">
         {navItems.map((item, index) => (
           <ButtonNav key={index} name={item.name} linkTo={item.linkTo} />
         ))}
@@ -41,6 +42,7 @@ const Navbar = () => {
         ))}
       </div>
     </motion.div>
+    </div>
   );
 };
 

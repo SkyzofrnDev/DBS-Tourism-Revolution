@@ -22,7 +22,13 @@ const categories = [
     image: '/ImageData/Borobudur.svg',
     categories: ['Culture', 'Destination'],
     linkTo: '/categories/culture',
-  },
+  },  {
+    title: 'Culture, Indonesia',
+    desc: 'Destinasi Kebudayaan Terbaik Di Indonesia',
+    image: '/ImageData/Borobudur.svg',
+    categories: ['Culture', 'Destination'],
+    linkTo: '/categories/culture',
+  }
 ];
 const CategoryCard = ({ title, desc, image, categories = [], linkTo }) => {
   return (
@@ -56,12 +62,12 @@ const CategoryDestination = () => {
     <div>
       <div className="text-center mt-48">
         <p className="text-5xl font-light">
-          <b>W</b>hat’s <b>Y</b>our <b>N</b>ext <b>A</b>dventure?
+          <b>W</b>hat's <b>Y</b>our <b>N</b>ext <b>A</b>dventure?
         </p>
         <p className="text-3xl mt-5 ">Pick a category and start exploring</p>
         <div className="p-4 ">
           <div className="mt-28 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {categories.map((item, idx) => (
+            {categories.slice(0, 3).map((item, idx) => (
               <CategoryCard key={idx} {...item} />
             ))}
           </div>

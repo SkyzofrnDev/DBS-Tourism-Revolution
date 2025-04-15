@@ -1,9 +1,9 @@
 [
     {
-        "id": 4,
+        "id": 1,
         "name": "Raja Ampat",
         "slug": "raja-ampat",
-        "thumbnail": "destinations/thumbnails/RclsGB0xdMjZZhQzeNubf8ANCDgEEIUta21K6nKJ.jpg",
+        "thumbnail": "/ImageData/RajaAmpat.svg",
         "description": "Destinasi Raja Ampat",
         "province_id": 3,
         "address": "Raja Ampat, Papua, Indonesia",
@@ -22,5 +22,88 @@
                 "updated_at": "2025-04-12T10:09:54.000000Z"
             }
         ]
+    },
+    {
+        "id": 2,
+        "name": "Bali",
+        "slug": "bali",
+        "thumbnail": "/ImageData/RajaAmpat.svg",
+        "description": "Destinasi Bali",
+        "province_id": 1,
+        "address": "Bali, Indonesia",
+        "gmaps": "https://maps.app.goo.gl/YFkJeuQZTfEvAn9X8",
+        "category_id": 1,
+        "rating_avg": "5.0000",
+        "created_at": "2025-04-12T10:07:44.000000Z",
+        "updated_at": "2025-04-12T10:07:44.000000Z",
+        "ratings": [
+            {
+                "id": 3,
+                "user_id": 1,
+                "destination_id": 4,
+                "score": 5,
+                "created_at": "2025-04-12T10:09:54.000000Z",
+                "updated_at": "2025-04-12T10:09:54.000000Z"
+            }
+        ]     },
+    {
+        "id": 3,
+        "name": "Jakarta",
+        "slug": "jakarta",
+        "thumbnail": "/ImageData/RajaAmpat.svg",
+        "description": "Destinasi Jakarta",
+        "province_id": 2,
+        "address": "Jakarta, Indonesia",
+        "gmaps": "https://maps.app.goo.gl/YFkJeuQZTfEvAn9X8",
+        "category_id": 1,
+        "rating_avg": "5.0000",
+        "created_at": "2025-04-12T10:07:44.000000Z",
+        "updated_at": "2025-04-12T10:07:44.000000Z",
+        "ratings": []
+    },
+    {
+        "id": 4,
+        "name": "Yogyakarta",
+        "slug": "yogyakarta",
+        "thumbnail": "/ImageData/RajaAmpat.svg",
+        "description": "Destinasi Yogyakarta",
+        "province_id": 4,
+        "address": "Yogyakarta, Indonesia",
+        "gmaps": "https://maps.app.goo.gl/YFkJeuQZTfEvAn9X8",
+        "category_id": 1,
+        "rating_avg": "5.0000",
+        "created_at": "2025-04-12T10:07:44.000000Z",
+        "updated_at": "2025-04-12T10:07:44.000000Z",
+        "ratings": []
+    },
+    {
+        "id": 5,
+        "name": "Bandung",
+        "slug": "bandung",
+        "thumbnail": "/ImageData/RajaAmpat.svg",
+        "description": "Destinasi Bandung",
+        "province_id": 5,
+        "address": "Bandung, Indonesia",
+        "gmaps": "https://maps.app.goo.gl/YFkJeuQZTfEvAn9X8",
+        "category_id": 1,
+        "rating_avg": "5.0000",
+        "created_at": "2025-04-12T10:07:44.000000Z",
+        "updated_at": "2025-04-12T10:07:44.000000Z",
+        "ratings": []
+    },
+    {
+        "id": 6,
+        "name": "Surabaya",
+        "slug": "surabaya",
+        "thumbnail": "/ImageData/RajaAmpat.svg",
+        "description": "Destinasi Surabaya",
+        "province_id": 6,
+        "address": "Surabaya, Indonesia",
+        "gmaps": "https://maps.app.goo.gl/YFkJeuQZTfEvAn9X8",
+        "category_id": 1,
+        "rating_avg": "5.0000",
+        "created_at": "2025-04-12T10:07:44.000000Z",
+        "updated_at": "2025-04-12T10:07:44.000000Z",
+        "ratings": []
     }
 ]

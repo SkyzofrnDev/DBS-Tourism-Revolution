@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import provincesData from '../Data/Provinces.json';
 
 const category = [{ name: 'Tourism' }, { name: 'Best' }, { name: 'Travel' }];
 
-const destinations = [
-  { title: 'Bali', label: '14 Destination', image: '/ImageData/Bromo.svg', link: '/bali' },
-  { title: 'Jogja', label: '14 Destination', image: '/ImageData/Bromo.svg', link: '/jogja' },
-  { title: 'Riau', label: '14 Destination', image: '/ImageData/Bromo.svg', link: '/riau' },
-  { title: 'Bandung', label: '14 Destination', image: '/ImageData/Bromo.svg', link: '/bandung' },
-  { title: 'Lombok', label: '14 Destination', image: '/ImageData/Bromo.svg', link: '/lombok' },
-];
+// Convert provinces data to match our component needs
+const destinations = provincesData.map(province => ({
+  title: province.name,
+  label: 'Explore Destinations', // Default label since provinces.json doesn't have destination count
+  image: province.thumbnail,
+  link: `/province/${province.slug}`,
+  description: province.description
+}));
 
 const Category = ({ name }) => (
   <div className="mt-20">
@@ -19,7 +21,7 @@ const Category = ({ name }) => (
   </div>
 );
 
-const DestinationCard = ({ title, label, image, link }) => {
+const DestinationCard = ({ title, label, image, link, description }) => {
   const handleClick = () => {
     console.log(`Navigating to: ${link}`);
   };
@@ -36,6 +38,7 @@ const DestinationCard = ({ title, label, image, link }) => {
       <div className="absolute bottom-4 left-4 text-white text-lg font-medium">
         {title}
       </div>
+
     </div>
   );
 };
