@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+input {
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #000; /* Ganti dengan warna yang diinginkan */
+}
+
+label {
+  color: #000; /* Ganti dengan warna yang diinginkan */
+}

@@ -1,0 +1,7 @@
+export {default as HeroSection} from './HeroSection'
+export {default as Trending} from './Trending'
+export {default as DestinasionGrid} from './DestinasionGrid'
+export {default as CategoryRegion} from './CategoryRegion'
+export {default as CategoryDestination} from './CategoryDestination'
+export {default as Explore} from './Explore'
+export {default as Qoute} from './Qoute'
