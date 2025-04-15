@@ -25,7 +25,9 @@ const CategoryRegion = () => {
           <b>Your</b> next <b>favorite</b> place <br /> awaits
         </p>
         <p className='text-2xl font-light'>The most talked about <br /> places among travelers</p>
-        <div></div>
+        <div>
+
+        </div>
       </div>
     </div>
   );
