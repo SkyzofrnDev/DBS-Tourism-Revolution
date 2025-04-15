@@ -1,0 +1,26 @@
+[
+    {
+        "id": 4,
+        "name": "Raja Ampat",
+        "slug": "raja-ampat",
+        "thumbnail": "destinations/thumbnails/RclsGB0xdMjZZhQzeNubf8ANCDgEEIUta21K6nKJ.jpg",
+        "description": "Destinasi Raja Ampat",
+        "province_id": 3,
+        "address": "Raja Ampat, Papua, Indonesia",
+        "gmaps": "https://maps.app.goo.gl/YFkJeuQZTfEvAn9X8",
+        "category_id": 1,
+        "rating_avg": "5.0000",
+        "created_at": "2025-04-12T10:07:44.000000Z",
+        "updated_at": "2025-04-12T10:07:44.000000Z",
+        "ratings": [
+            {
+                "id": 3,
+                "user_id": 1,
+                "destination_id": 4,
+                "score": 5,
+                "created_at": "2025-04-12T10:09:54.000000Z",
+                "updated_at": "2025-04-12T10:09:54.000000Z"
+            }
+        ]
+    }
+]
