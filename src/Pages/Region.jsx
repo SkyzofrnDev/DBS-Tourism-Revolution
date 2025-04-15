@@ -28,6 +28,7 @@ const spots = [
   },
 ];
 
+
 const RegionCard = () => {
   return (
     <div className="w-full">
@@ -65,6 +66,7 @@ const RegionCard = () => {
 };
 
 const Region = () => {
+
   return (
     <div className="">
       <p className="px-16 text-5xl pt-52 leading-relaxed">

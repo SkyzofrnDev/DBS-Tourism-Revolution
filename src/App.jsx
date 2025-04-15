@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Footer, Navbar } from './components/Index';
-import { LandingPage, Login, Register, Region, Article } from './Pages/Index';
+import { LandingPage, Login, Register, Region, Article, Destinations } from './Pages/Index';
 
 function App() {
   const location = useLocation(); 
@@ -15,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/destination" element={<Region/>} />
         <Route path="/article" element={<Article/>} />
+        <Route path="/Destinations" element={<Destinations/>} />
       </Routes>
       {!isAuthPage && <Footer />}
     </>
