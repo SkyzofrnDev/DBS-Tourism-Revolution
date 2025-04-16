@@ -7,6 +7,7 @@ const navItems = [
   { name: 'Home', linkTo: '/' },
   { name: 'Article', linkTo: '/Article' },
   { name: 'Source Code', linkTo: '#about' },
+  { name: 'Destinations', linkTo: '/destinations' },
 ];
 
 const buttonAuth = [

@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import provincesData from '../Data/Provinces.json';
 
 const category = [{ name: 'Tourism' }, { name: 'Best' }, { name: 'Travel' }];
-
-const destinations = provincesData.map(province => ({
-  title: province.name,
-  label: 'Explore Destinations', 
-  image: province.thumbnail,
-  link: `/province/${province.slug}`,
-  description: province.description
-}));
 
 const Category = ({ name }) => (
   <div className="mt-20">
@@ -42,10 +33,46 @@ const DestinationCard = ({ title, label, image, link, description }) => {
   );
 };
 
+const SkeletonCard = () => (
+  <div className="relative rounded-2xl overflow-hidden min-w-[400px] max-w-[500px] h-[420px] bg-gray-200 animate-pulse">
+    <div className="absolute top-4 left-4 bg-white/60 px-6 py-2 rounded-full w-40 h-8"></div>
+    <div className="absolute bottom-4 left-4 w-3/4 h-6 bg-gray-300 rounded"></div>
+  </div>
+);
+
 const CategoryRegion = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
   const visibleCount = 3;
-  const cardWidth = 520; // card + gap
+  const cardWidth = 520;
+
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/provinces', {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        setDestinations(data.map(province => ({
+          title: province.name,
+          label: 'Explore Destinations',
+          image: `http://127.0.0.1:8000/storage/${province.thumbnail}`,
+          link: `/province/${province.slug}`,
+          description: province.description
+        })));
+      } catch (error) {
+        console.error('Error fetching provinces:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProvinces();
+  }, []);
 
   const maxIndex = destinations.length - visibleCount;
 
@@ -60,6 +87,47 @@ const CategoryRegion = () => {
       setStartIndex(startIndex - 1);
     }
   };
+
+  if (loading) return (
+    <div className="p-6 overflow-hidden w-full">
+      {/* Categories Skeleton */}
+      <div className="flex gap-5">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="mt-20">
+            <div className="bg-gray-200 border-2 rounded-full border-gray-300 w-32 h-12 animate-pulse"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* Heading & Controls Skeleton */}
+      <div className="flex items-start mt-10 w-full justify-between">
+        <div className="w-1/3 h-12 bg-gray-200 rounded animate-pulse"></div>
+        <div className="w-1/4 h-8 bg-gray-200 rounded animate-pulse"></div>
+        <div className="flex gap-5">
+          <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+          <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+
+      {/* Carousel Skeleton */}
+      <div className="mt-10 overflow-hidden mx-auto px-4" style={{ maxWidth: `${cardWidth * 3 + 40}px` }}>
+        <div className="flex gap-5">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
+              <SkeletonCard />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots Skeleton */}
+      <div className="flex justify-center mt-6 gap-2">
+        {[1, 2, 3].map((i) => (
+          <span key={i} className="w-3 h-3 rounded-full bg-gray-300 animate-pulse"></span>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="p-6 overflow-hidden w-full">
@@ -88,24 +156,23 @@ const CategoryRegion = () => {
         </div>
       </div>
 
-{/* Carousel */}
-<div
-  className="mt-10 overflow-hidden mx-auto px-4"
-  style={{ maxWidth: `${cardWidth * 3 + 40}px` }} // 40px buat padding
->
-  <motion.div
-    className="flex gap-5"
-    animate={{ x: -startIndex * (cardWidth + 20) }} // tambahkan gap jika perlu
-    transition={{ type: 'spring', stiffness: 500, damping: 50 }}
-  >
-    {destinations.map((item, index) => (
-      <div key={index} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
-        <DestinationCard {...item} />
+      {/* Carousel */}
+      <div
+        className="mt-10 overflow-hidden mx-auto px-4"
+        style={{ maxWidth: `${cardWidth * 3 + 40}px` }}
+      >
+        <motion.div
+          className="flex gap-5"
+          animate={{ x: -startIndex * (cardWidth + 20) }}
+          transition={{ type: 'spring', stiffness: 500, damping: 50 }}
+        >
+          {destinations.map((item, index) => (
+            <div key={index} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
+              <DestinationCard {...item} />
+            </div>
+          ))}
+        </motion.div>
       </div>
-    ))}
-  </motion.div>
-</div>
-
 
       {/* Dots */}
       <div className="flex justify-center mt-6 gap-2">

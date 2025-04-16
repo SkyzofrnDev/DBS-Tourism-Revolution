@@ -4,21 +4,31 @@ import {
   LandingPage,
   Login,
   Register,
-  Region,
+  AllDestination,
   Article,
   Destinations,
   UserProfile,
   AddArticle,
   ListArticle,
 } from './Pages/Index';
+import { useEffect } from 'react';
 
 function App() {
   const location = useLocation();
+
   const isAuthPage =
     location.pathname === '/login' || location.pathname === '/register';
   const isProfile =
     location.pathname === '/userprofile';
   const isAddArticle = location.pathname === '/addarticle' || location.pathname === '/AddArticle';
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [location.pathname]);
+
   return (
     <>
       {!isAuthPage && <Navbar />}
@@ -26,10 +36,10 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/destination" element={<Region />} />
-        <Route path="/article" element={<Article />} />
-        <Route path="/listarticle" element={<ListArticle />} />
-        <Route path="/destinations" element={<Destinations />} />
+        <Route path="/destinations" element={<AllDestination />} />
+        <Route path="/destinations/:slug" element={<Destinations />} />
+        <Route path="/article" element={<ListArticle />} />
+        <Route path="/article/:slug" element={<Article />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/addarticle" element={<AddArticle />} />
       </Routes>

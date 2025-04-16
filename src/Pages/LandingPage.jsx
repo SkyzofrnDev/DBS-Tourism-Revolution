@@ -17,9 +17,9 @@ const LandingPage = () => {
         <Trending />
         <DestinasionGrid />
         <CategoryRegion />
+      <Explore />
         <CategoryDestination />
       </div>
-      <Explore />
       <Qoute/>
 
     </div>
