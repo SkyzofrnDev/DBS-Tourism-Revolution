@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "title": "Sample Article",
+        "user_id": 1,
+        "slug": "sample-article-title",
+        "thumbnail": "thumbnails/3X5JRGabEKM4T0EyM7nWffb09sjGNn1S3U4YvjHN.jpg",
+        "description": "This is a sample description for the article.",
+        "location": "Sample Location",
+        "tags": "[\"tag1\", \"tag2\", \"tag3\"]",
+        "content": "This is the content of the sample article.",
+        "created_at": "2025-03-28T09:46:06.000000Z",
+        "updated_at": "2025-03-28T09:46:06.000000Z"
+    },
+    {
+        "id": 2,
+        "title": "Another Sample Article",
+        "user_id": 1,
+        "slug": "another-sample-article-title",
+        "thumbnail": "thumbnails/fxwnjLpDAS9vcNSKoOSqO1XUiOw2dI3U45VsL4m8.jpg",
+        "description": "This is a sample description for the another sample article.",
+        "location": "Sample Location",
+        "tags": "[\"tag10\", \"tag21\", \"tag33\"]",
+        "content": "This is the content of the another sample article.",
+        "created_at": "2025-03-28T09:49:16.000000Z",
+        "updated_at": "2025-03-28T09:49:16.000000Z"
+    },
+    {
+        "id": 5,
+        "title": "Another Article More",
+        "user_id": 1,
+        "slug": "another-article-more-1",
+        "thumbnail": "thumbnails/dpoSqMbpGE05boJAhDbfIBYWUNubzBpDyMDXJa7q.jpg",
+        "description": "This is a sample description for the another sample article.",
+        "location": "Sample Location",
+        "tags": "[\"tag1034\", \"tag211231\", \"tag33423\"]",
+        "content": "This is the content of the another sample article.",
+        "created_at": "2025-03-29T03:32:29.000000Z",
+        "updated_at": "2025-03-29T03:32:29.000000Z"
+    }
+]

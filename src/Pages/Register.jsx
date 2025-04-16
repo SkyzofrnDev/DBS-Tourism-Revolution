@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [emailFocused, setEmailFocused] = useState(false);
@@ -10,13 +12,40 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const fullName = `${firstName} ${lastName}`;
+            const formData = new FormData();
+            formData.append('name', fullName);
+            formData.append('email', email);
+            formData.append('password', password);
+
+            const response = await axios.post('http://127.0.0.1:8000/api/register', formData, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            if (response.status === 201) {
+                navigate('/login');
+            }
+        } catch (error) {
+            console.error('Registration error:', error.response?.data || error.message);
+            alert('Registration failed. Please check your data and try again.');
+        }
+    }
+
   return (
     <div className='px-36 h-screen w-screen bg-[url("/Image/AuthBg.svg")] bg-cover flex justify-end items-center'>
       <div className="px-16 py-20 bg-white rounded-3xl w-1/2">
         <p className="text-4xl ">
           <b>Welcome to VistaNusa!</b>
         </p>
-        <form action="POST" className="mt-10">
+        <form method="POST" className="mt-10" onSubmit={handleSubmit}>
           <div className="relative mt-10 flex gap-10">
             <label
               className={`absolute select-none left-4 transition-all duration-200 ${firstName.length > 0 || firstNameFocused ? 'text-black top-[-25px] left-2 text-lg' : 'text-black/50 top-4 left-4 text-lg'}`}
@@ -87,7 +116,7 @@ const Register = () => {
             type="submit"
             className="bg-black text-white w-full py-5 text-lg rounded-full mt-5"
           >
-            Login Now !
+            Register Now !
           </button>
         </form>
       </div>

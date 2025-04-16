@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const tagsList = [
   'Destination',
@@ -18,6 +19,7 @@ const AddArticle = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
+  const [location, setLocation] = useState('');
 
   const handleTagClick = (tag) => {
     if (selectedTags.includes(tag)) {
@@ -45,27 +47,36 @@ const AddArticle = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const articleData = {
-      title,
-      description,
-      content,
-      tags: selectedTags,
-      imageName: imageFile ? imageFile.name : null,
-    };
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('location', location);
+    formData.append('content', content);
+    selectedTags.forEach(tag => formData.append('tags[]', tag));
+    if (imageFile) {
+      formData.append('thumbnail', imageFile);
+    }
 
-    // Simpan info ke localStorage (simulasi "upload")
-    localStorage.setItem('uploadedArticle', JSON.stringify(articleData));
-
-    // Tampilkan di console
-    console.log('Submitted Article Data:', articleData);
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/articles', formData, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      console.log('Article created:', response.data);
+      // Redirect or show success message
+    } catch (error) {
+      console.error('Error creating article:', error);
+    }
   };
 
   return (
     <div className="bg-[#E0E4E9] min-h-screen flex justify-center items-center px-4 pt-20">
-      <div className="w-full max-w-[700px] py-10 ">
+      <div className="w-full max-w-[700px] py-10">
         <form onSubmit={handleSubmit} className="space-y-6 bg-white px-20 rounded-3xl shadow pt-10">
           <div>
             <label className="block font-semibold text-black">
@@ -104,6 +115,19 @@ const AddArticle = () => {
               onChange={(e) => setContent(e.target.value)}
               className="mt-1 w-full p-2 border rounded-md"
             ></textarea>
+          </div>
+
+          <div>
+            <label className="block font-semibold text-black">
+              Location (Google Maps URL)
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Google Maps URL"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="mt-1 w-full p-2 border rounded-md"
+            />
           </div>
 
           <div>

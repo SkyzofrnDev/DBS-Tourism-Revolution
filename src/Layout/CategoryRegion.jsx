@@ -4,10 +4,9 @@ import provincesData from '../Data/Provinces.json';
 
 const category = [{ name: 'Tourism' }, { name: 'Best' }, { name: 'Travel' }];
 
-// Convert provinces data to match our component needs
 const destinations = provincesData.map(province => ({
   title: province.name,
-  label: 'Explore Destinations', // Default label since provinces.json doesn't have destination count
+  label: 'Explore Destinations', 
   image: province.thumbnail,
   link: `/province/${province.slug}`,
   description: province.description

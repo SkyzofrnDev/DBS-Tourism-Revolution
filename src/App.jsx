@@ -9,6 +9,7 @@ import {
   Destinations,
   UserProfile,
   AddArticle,
+  ListArticle,
 } from './Pages/Index';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/destination" element={<Region />} />
         <Route path="/article" element={<Article />} />
+        <Route path="/listarticle" element={<ListArticle />} />
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/addarticle" element={<AddArticle />} />
