@@ -68,7 +68,7 @@ const ProvinceAll = () => {
         <div className="w-full">
           {provinces.map((province, index) => (
             <Link
-              to={`/province/${province.slug}`}
+              to={`/provinces/${province.slug}`}
               key={province.id}
               className={`flex justify-between items-start px-16 py-10 
             border-t-2 border-black/50 hover:bg-gray-50 transition
