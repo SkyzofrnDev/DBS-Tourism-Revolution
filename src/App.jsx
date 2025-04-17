@@ -10,8 +10,8 @@ import {
   UserProfile,
   AddArticle,
   ListArticle,
-  DestinationAll,
   RegionAll,
+  AllProvinces,
 } from './Pages/Index';
 import { useEffect } from 'react';
 
@@ -44,7 +44,7 @@ function App() {
         <Route path="/article/:slug" element={<Article />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/addarticle" element={<AddArticle />} />
-        <Route path="/alldestinations" element={<DestinationAll />} />
+        <Route path="/provinces" element={<AllProvinces />} />
         <Route path="/regionall" element={<RegionAll />} />
       </Routes>
       {!isAuthPage && !isProfile && !isAddArticle && <Footer />}
