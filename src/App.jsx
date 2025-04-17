@@ -14,6 +14,7 @@ import {
   AllProvinces,
   DestinationsRegion,
   Category,
+  CategoryReg,
 } from './Pages/Index';
 import { useEffect } from 'react';
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/regionall" element={<RegionAll />} />
         <Route path="/destinationsregion" element={<DestinationsRegion />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/categoryreg" element={<CategoryReg />} />
       </Routes>
       {!isAuthPage && !isProfile && !isAddArticle && <Footer />}
     </>
