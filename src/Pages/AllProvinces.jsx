@@ -2,6 +2,24 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const SkeletonProvinceCard = () => (
+  <div className={`flex justify-between items-start px-16 py-10 border-t-2 border-black/50`}>
+    {/* Left content skeleton */}
+    <div className="flex gap-4">
+      <div className="w-40 h-40 mr-10 bg-gray-200 rounded-lg animate-pulse aspect-square"></div>
+      <div>
+        <div className="h-8 w-48 bg-gray-200 rounded mb-4 animate-pulse"></div>
+        <div className="bg-transparent px-5 py-2 border-2 border-black/20 rounded-lg mt-5 w-40">
+          <div className="h-6 w-full bg-gray-200 rounded animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+    
+    {/* Right content skeleton */} 
+    <div className="h-4 w-64 bg-gray-200 rounded animate-pulse"></div>
+  </div>
+);
+
 const ProvinceAll = () => {
   const [provinces, setProvinces] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,6 +39,24 @@ const ProvinceAll = () => {
 
     fetchArticles();
   }, []);
+
+  if (loading) return (
+    <div>
+      <p className="px-16 text-5xl pt-52 leading-relaxed">
+        Explore the provinces where history, culture, and nature converge
+      </p>
+      <div className="mt-44">
+        <div className="w-full">
+          {[1, 2, 3, 4].map((_, index) => (
+            <SkeletonProvinceCard 
+              key={index}
+              className={index === 3 ? 'border-b-2' : ''}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div>
