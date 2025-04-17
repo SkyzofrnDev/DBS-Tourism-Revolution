@@ -13,6 +13,7 @@ import {
   RegionAll,
   AllProvinces,
   DestinationsRegion,
+  Category,
 } from './Pages/Index';
 import { useEffect } from 'react';
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/provinces" element={<AllProvinces />} />
         <Route path="/regionall" element={<RegionAll />} />
         <Route path="/destinationsregion" element={<DestinationsRegion />} />
+        <Route path="/category" element={<Category />} />
       </Routes>
       {!isAuthPage && !isProfile && !isAddArticle && <Footer />}
     </>
