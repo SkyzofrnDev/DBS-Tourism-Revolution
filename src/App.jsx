@@ -24,14 +24,14 @@ function App() {
 
   const isAuthPage =
     location.pathname === '/login' || location.pathname === '/register';
-  const isProfile =
-    location.pathname === '/userprofile';
-  const isAddArticle = location.pathname === '/addarticle' || location.pathname === '/AddArticle';
+  const isProfile = location.pathname === '/userprofile';
+  const isAddArticle =
+    location.pathname === '/addarticle' || location.pathname === '/AddArticle';
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }, [location.pathname]);
 
@@ -44,8 +44,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/destinations" element={<AllDestination />} />
         <Route path="/destinations/:slug" element={<Destinations />} />
-        <Route path="/article" element={<ListArticle />} />
-        <Route path="/article/:slug" element={<Article />} />
+        <Route path="/articles" element={<ListArticle />} />
+        <Route path="/articles/:slug" element={<Article />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/addarticle" element={<AddArticle />} />
         <Route path="/provinces" element={<AllProvinces />} />
