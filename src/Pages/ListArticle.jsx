@@ -2,6 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const SkeletonBox = ({ className }) => (
+  <div className={`bg-gray-200 rounded animate-pulse ${className}`} />
+);
+
+const SkeletonArticleCard = () => (
+  <Link to="#" className="flex justify-between items-start px-16 py-10 border-t-2 border-black/50">
+    <div className="flex gap-4">
+      <SkeletonBox className="w-40 h-40 mr-10 rounded-lg" />
+      <div>
+        <SkeletonBox className="h-8 w-3/4 mb-2" />
+        <SkeletonBox className="h-6 w-1/2 mb-2" />
+        <SkeletonBox className="h-4 w-1/3" />
+      </div>
+    </div>
+
+    <SkeletonBox className="h-6 w-1/4" />
+  </Link>
+);
+
 const ListArticle = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +41,21 @@ const ListArticle = () => {
     fetchArticles();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return (
+    <div className="">
+      <p className="px-16 text-5xl pt-52 leading-relaxed">
+        Discover the community Article
+      </p>
+      <div className="mt-44">
+        <div className="w-full">
+          {[1, 2, 3, 4].map((_, index) => (
+            <SkeletonArticleCard key={index} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   if (error) return <div>Error: {error}</div>;
 
   return (

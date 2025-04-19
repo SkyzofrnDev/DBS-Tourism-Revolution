@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Skeleton Components
 const SkeletonBox = ({ className }) => (
   <div className={`bg-gray-300/50 rounded animate-pulse ${className}`} />
 );
