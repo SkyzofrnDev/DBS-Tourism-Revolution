@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Star = ({ filled, onClick }) => (
   <svg
@@ -26,6 +26,7 @@ const Destinations = () => {
   const [submitting, setSubmitting] = useState(false);
   const [authError, setAuthError] = useState(false);
   const { slug } = useParams();
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const fetchDestination = async () => {
@@ -103,6 +104,37 @@ const Destinations = () => {
     }
   };
 
+  const dummyDestinations = [
+    {
+      title: "Raja Ampat",
+      label: "5.0 ★",
+      image: "/ImageData/RajaAmpat.svg",
+      link: "/destinations/raja-ampat",
+      description: "Destinasi Raja Ampat"
+    },
+    {
+      title: "Bali",
+      label: "4.5 ★",
+      image: "/ImageData/Bali.svg",
+      link: "/destinations/bali",
+      description: "Destinasi Bali"
+    },
+    {
+      title: "Borobudur",
+      label: "4.8 ★",
+      image: "/ImageData/Borobudur.svg",
+      link: "/destinations/borobudur",
+      description: "Candi Budha terbesar di dunia"
+    },
+    {
+      title: "Borobudur",
+      label: "4.8 ★",
+      image: "/ImageData/Borobudur.svg",
+      link: "/destinations/borobudur",
+      description: "Candi Budha terbesar di dunia"
+    }
+  ];
+
   if (loading) return <div>Loading...</div>;
   if (!destination) return <div>Destination not found</div>;
 
@@ -122,7 +154,6 @@ const Destinations = () => {
             </p>
             <p className="flex items-center gap-2 text-yellow-500 mt-2 font-semibold">
               ⭐ {destination.rating_avg ? `${parseFloat(destination.rating_avg).toFixed(1)}/5` : 'No ratings'}
-
             </p>
           </div>
         </div>
@@ -164,8 +195,52 @@ const Destinations = () => {
           {submitting ? 'SUBMITTING...' : 'SUBMIT'}
         </button>
       </form>
+
+      <div className="px-5 lg:px-20 mt-20">
+        <h2 className="text-3xl font-bold mb-8">Other Popular Destinations</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dummyDestinations.slice(0, 3).map((dest, index) => (
+            <Card
+              key={index}
+              title={dest.title}
+              desc={dest.description}
+              image={dest.image}
+              categories={['Popular', 'Tourism']}
+              linkTo={dest.link}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
 
+const Card = ({ title, desc, image, categories = [], linkTo }) => {
+  return (
+    <Link
+      to={linkTo}
+      className="text-left w-full bg-white rounded-xl overflow-hidden block"
+    >
+      <img
+        src={`http://127.0.0.1:8000/storage/${image}`}
+        alt={title}
+        className="w-full h-96 object-cover rounded-xl"
+      />
+      <div className="p-4">
+        <h3 className="text-3xl font-semibold">{title}</h3>
+        <p className="text-xl text-gray-600 mt-1">{desc}</p>
+        <div className="flex gap-2 flex-wrap mt-3">
+          {categories.map((cat, idx) => (
+            <span
+              key={idx}
+              className="font-semibold bg-gray-200 text-lg px-5 py-1 rounded-full"
+            >
+              {cat}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+};
 export default Destinations;

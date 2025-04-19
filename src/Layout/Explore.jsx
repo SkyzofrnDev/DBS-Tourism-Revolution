@@ -11,17 +11,7 @@ const Explore = () => {
           </p>
         </div>
         <div className="relative w-full max-w-xl mx-auto mt-10 ">
-          {/* <input
-            type="text"
-            placeholder="Search Destination"
-            className="w-full h-16 pl-6 pr-16 rounded-full text-gray-700 text-lg placeholder-gray-400 focus:outline-none shadow-md"
-          />
-          <button
-            type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-gray-800 transition"
-          >
-            <img src="/Icon/Search.svg" alt="" className='text-white'/>
-          </button> */}
+
         </div>
         <div className="flex gap-10 mt-10 text-lg">
           <p>Popular :</p>
