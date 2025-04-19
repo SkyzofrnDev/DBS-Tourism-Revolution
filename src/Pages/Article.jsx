@@ -159,7 +159,7 @@ const Article = () => {
 const ArticleCard = ({ title, description, tags, slug, thumbnail }) => {
   return (
     <Link
-      to={`/article/${slug}`}
+      to={`/articles/${slug}`}
       className="w-full block group"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
