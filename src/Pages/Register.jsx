@@ -12,32 +12,39 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const fullName = `${firstName} ${lastName}`;
-            const formData = new FormData();
-            formData.append('name', fullName);
-            formData.append('email', email);
-            formData.append('password', password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const fullName = `${firstName} ${lastName}`;
+      const formData = new FormData();
+      formData.append('name', fullName);
+      formData.append('email', email);
+      formData.append('password', password);
 
-            const response = await axios.post('http://127.0.0.1:8000/api/register', formData, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-
-            if (response.status === 201) {
-                navigate('/login');
-            }
-        } catch (error) {
-            console.error('Registration error:', error.response?.data || error.message);
-            alert('Registration failed. Please check your data and try again.');
+      const response = await axios.post(
+        'http://127.0.0.1:8000/api/register',
+        formData,
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
         }
+      );
+
+      if (response.status === 201) {
+        navigate('/login');
+      }
+    } catch (error) {
+      console.error(
+        'Registration error:',
+        error.response?.data || error.message
+      );
+      alert('Registration failed. Please check your data and try again.');
     }
+  };
 
   return (
     <div className='px-36 h-screen w-screen bg-[url("/Image/AuthBg.svg")] bg-cover flex justify-end items-center'>
@@ -55,6 +62,7 @@ const Register = () => {
             <input
               type="text"
               required
+              minLength={2}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               onBlur={() => setFirstNameFocused(false)}
@@ -68,7 +76,6 @@ const Register = () => {
             </label>
             <input
               type="text"
-              required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               onFocus={() => setLastNameFocused(true)}
@@ -83,8 +90,9 @@ const Register = () => {
               Email <span className="text-red-600">*</span>
             </label>
             <input
-              type="text"
+              type="email"
               required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setEmailFocused(true)}
@@ -99,8 +107,9 @@ const Register = () => {
               Password <span className="text-red-600">*</span>
             </label>
             <input
-              type="text"
+              type="password"
               required
+              minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onFocus={() => setPasswordFocused(true)}
