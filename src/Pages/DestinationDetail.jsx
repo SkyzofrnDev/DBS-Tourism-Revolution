@@ -19,6 +19,28 @@ const Star = ({ filled, onClick }) => (
   </svg>
 );
 
+const SkeletonBox = ({ className }) => (
+  <div className={`bg-gray-200 rounded animate-pulse ${className}`} />
+);
+
+const SkeletonDestinationDetail = () => (
+  <div className="flex px-5 lg:px-20 gap-10 w-full pt-56">
+    <div className="w-1/2 sticky top-24 self-start">
+      <SkeletonBox className="w-full h-[500px] rounded-2xl mb-4" />
+      <div className="mt-4 bg-white rounded-xl shadow p-4">
+        <SkeletonBox className="h-6 w-3/4 mb-2" />
+        <SkeletonBox className="h-6 w-1/2" />
+      </div>
+    </div>
+
+    <div className="w-1/2 flex flex-col gap-8 text-lg">
+      <SkeletonBox className="h-8 w-3/4" />
+      <SkeletonBox className="h-4 w-full" />
+      <SkeletonBox className="h-4 w-full" />
+    </div>
+  </div>
+);
+
 const Destinations = () => {
   const [rating, setRating] = useState(0);
   const [destination, setDestination] = useState(null);
@@ -135,13 +157,12 @@ const Destinations = () => {
     }
   ];
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <SkeletonDestinationDetail />;
   if (!destination) return <div>Destination not found</div>;
 
   return (
     <div>
       <div className="flex px-5 lg:px-20 gap-10 w-full pt-56">
-        {/* Left - Sticky Image */}
         <div className="w-1/2 sticky top-24 self-start">
           <img
             src={`http://127.0.0.1:8000/storage/${destination.thumbnail}`}
@@ -158,7 +179,6 @@ const Destinations = () => {
           </div>
         </div>
 
-        {/* Right - Scrollable Content */}
         <div className="w-1/2 flex flex-col gap-8 text-lg">
           <h1 className="text-3xl font-bold">{destination.name}</h1>
           <p>{destination.description}</p>
