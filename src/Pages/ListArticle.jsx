@@ -71,7 +71,9 @@ const ListArticle = () => {
               </div>
 
               {/* Right content */}
-              <p className="text-lg text-left max-w-md">{article.description}</p>
+              <p className="text-lg text-left max-w-md">
+                {article.description.split(' ').slice(0, 15).join(' ') + (article.description.split(' ').length > 15 ? '...' : '')}
+              </p>
             </Link>
           ))}
         </div>
