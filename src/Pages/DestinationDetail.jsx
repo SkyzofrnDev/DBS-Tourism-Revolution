@@ -125,6 +125,13 @@ const Destinations = () => {
       image: "/ImageData/Borobudur.svg",
       link: "/destinations/borobudur",
       description: "Candi Budha terbesar di dunia"
+    },
+    {
+      title: "Borobudur",
+      label: "4.8 ★",
+      image: "/ImageData/Borobudur.svg",
+      link: "/destinations/borobudur",
+      description: "Candi Budha terbesar di dunia"
     }
   ];
 
@@ -192,7 +199,7 @@ const Destinations = () => {
       <div className="px-5 lg:px-20 mt-20">
         <h2 className="text-3xl font-bold mb-8">Other Popular Destinations</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {dummyDestinations.slice(0, showAll ? dummyDestinations.length : 3).map((dest, index) => (
+          {dummyDestinations.slice(0, 3).map((dest, index) => (
             <Card
               key={index}
               title={dest.title}
@@ -203,14 +210,6 @@ const Destinations = () => {
             />
           ))}
         </div>
-        {dummyDestinations.length > 3 && (
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="mt-8 w-full bg-lime-500 hover:bg-lime-600 text-white font-semibold py-3 rounded-full"
-          >
-            {showAll ? 'Show Less' : 'See More'}
-          </button>
-        )}
       </div>
     </div>
   );
