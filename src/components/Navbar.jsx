@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ButtonAuth, ButtonNav } from './Index.jsx';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -17,16 +17,29 @@ const buttonAuth = [
 
 const Navbar = () => {
   const token = localStorage.getItem('token');
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos, visible]);
 
   return (
-    <div className='py-5 h-fit flex items-center z-50 fixed bg-[#000000a0] w-full shadow-lg'>
+    <div className={`py-5 h-fit flex items-center z-50 fixed bg-[#000000a0] w-full shadow-lg transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
       <motion.div
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           type: 'spring',
           stiffness: 60,
-          damping:10,
+          damping: 10,
           duration: 0.6,
         }}
         className="flex w-screen center justify-between px-20 items-center"

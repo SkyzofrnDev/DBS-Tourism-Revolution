@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const category = [{ name: 'Tourism' }, { name: 'Best' }, { name: 'Travel' }];
 
@@ -12,24 +13,18 @@ const Category = ({ name }) => (
 );
 
 const DestinationCard = ({ title, label, image, link, description }) => {
-  const handleClick = () => {
-    console.log(`Navigating to: ${link}`);
-  };
-
   return (
-    <div
-      className="relative rounded-2xl overflow-hidden min-w-[400px] max-w-[500px] h-[420px] cursor-pointer border-2 border-white shadow-md"
-      onClick={handleClick}
-    >
-      <img src={image} alt={title} className="w-full h-full object-cover" />
-      <div className="absolute top-4 left-4 bg-white/60 px-6 py-2 rounded-full text-xl border-1 border-white border font-medium">
-        {label}
+    <Link to={link} className="block">
+      <div className="relative rounded-2xl overflow-hidden min-w-[400px] max-w-[500px] h-[420px] cursor-pointer border-2 border-white shadow-md hover:shadow-lg transition-shadow">
+        <img src={image} alt={title} className="w-full h-full object-cover" />
+        <div className="absolute top-4 left-4 bg-white/60 px-6 py-2 rounded-full text-xl border-1 border-white border font-medium">
+          {label}
+        </div>
+        <div className="absolute bottom-4 left-4 text-white text-lg font-medium">
+          {title}
+        </div>
       </div>
-      <div className="absolute bottom-4 left-4 text-white text-lg font-medium">
-        {title}
-      </div>
-
-    </div>
+    </Link>
   );
 };
 
@@ -59,9 +54,9 @@ const CategoryRegion = () => {
         const data = await response.json();
         setDestinations(data.map(province => ({
           title: province.name,
-          label: 'Explore Destinations',
+          label: province.destinations_count + " Destinations",
           image: `http://127.0.0.1:8000/storage/${province.thumbnail}`,
-          link: `/province/${province.slug}`,
+          link: `/provinces/${province.slug}`,
           description: province.description
         })));
       } catch (error) {
